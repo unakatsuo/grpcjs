@@ -28,9 +28,8 @@ func main() {
 
 	ws := grpcweb.WrapServer(gs)
 	mux := http.NewServeMux()
-	mux.Handle("/index.html", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	mux.Handle("/", http.HandlerFunc(ws.ServeHTTP))
+	mux.Handle("/api/", http.StripPrefix("/api/", http.HandlerFunc(ws.ServeHTTP)))
 
 	l, err := net.Listen("tcp", ":9090")
 	if err != nil {

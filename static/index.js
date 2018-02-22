@@ -9,7 +9,7 @@ function EchoCall(value) {
 
   grpc.invoke(Echo.Call, {
     request: req,
-    host: "http://localhost:9090",
+    host: "http://localhost:9090/api",
     onMessage: (message) => {
       console.log("onMessage", message.toObject());
       alert(message.getValue());
