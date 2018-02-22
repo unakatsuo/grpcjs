@@ -1,5 +1,5 @@
-./node_modules
-./static/bundle.js
+/node_modules
+/static/app.js
 vendor/
 
 # Logs

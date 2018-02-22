@@ -3,22 +3,28 @@
   "version": "0.0.1",
   "scripts": {
     "generate": "protoc --plugin=protoc-gen-js_service=./node_modules/.bin/protoc-gen-js_service --js_out=import_style=commonjs,binary:. --js_service_out=. pb/*.proto",
-    "build": "browserify static/index.js -t babelify --outfile static/bundle.js"
+    "build": "webpack -d",
+    "release": "webpack -p"
   },
   "dependencies": {
     "@types/google-protobuf": "^3.2.5",
     "google-protobuf": "^3.2.0",
-    "grpc-web-client": "^0.2.1"
+    "grpc-web-client": "^0.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.4.0",
-    "babelify": "^7.3.0",
-    "browserify": "^14.3.0",
-    "ts-protoc-gen": "^0.3.0"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "ts-protoc-gen": "^0.3.0",
+    "webpack": "^3.11.0"
   },
   "babel": {
     "presets": [
-      "env"
+      "env",
+      "react"
     ]
   }
 }
