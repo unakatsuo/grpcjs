@@ -3,16 +3,6 @@ import {grpc} from "grpc-web-client";
 import {Echo} from "../pb/api_pb_service.js";
 import {Request} from "../pb/api_pb.js";
 
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Component1} from './component1'
-  
-ReactDOM.render(
-  <Component1 />,
-  document.getElementById('app')
-);
-
 function EchoCall(value) {
   const req = new Request();
   req.setValue(value);
@@ -29,5 +19,3 @@ function EchoCall(value) {
     }
   });
 }
-
-EchoCall("Hello grpc-web-client");

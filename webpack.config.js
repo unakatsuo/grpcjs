@@ -1,10 +1,13 @@
 const path = require('path');
 	
 module.exports = {
-	entry: "./src/app.js",
+	entry: {
+		app: "./src/app.js",
+		react_page: ["./src/react_app.js"]
+	},
 	output: {
 		path:path.resolve(__dirname, "static"),
-		filename: "app.js"
+		filename: "[name].js"
 	},
 	module: {
 		loaders: [
