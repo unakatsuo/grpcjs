@@ -1,5 +1,6 @@
 /node_modules
-/static/app.js
+# Ignore webpacked assets.
+/static/*.js
 vendor/
 
 # Logs
