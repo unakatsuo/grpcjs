@@ -19,6 +19,13 @@ func (s *EchoService) Call(ctx context.Context, req *pb.Request) (*pb.Response, 
 }
 
 //go:generate protoc --go_out=plugins=grpc:. ./pb/api.proto
+
+func OAuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
+	log.Print(r.Form)
+	w.Header().Add("Location", "/static/index.html")
+	w.WriteHeader(http.StatusTemporaryRedirect)
+}
+
 func main() {
 	log.SetFlags(log.Lshortfile | log.Lmicroseconds)
 	//opts := []grpc.ServerOption{grpc.Creds(creds)}
@@ -28,6 +35,7 @@ func main() {
 
 	ws := grpcweb.WrapServer(gs)
 	mux := http.NewServeMux()
+	mux.Handle("/login/callback", http.HandlerFunc(OAuthCallbackHandler))
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	mux.Handle("/api/", http.StripPrefix("/api/", http.HandlerFunc(ws.ServeHTTP)))
 
