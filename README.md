@@ -13,10 +13,18 @@ go get -u go get -u github.com/golang/dep/cmd/dep
 dep ensure
 ```
 
-Build:
+Generate sources:
 
 ```
 npm run generate
+# On Windows
+npm run generate:win
+go generate ./main.go
+```
+
+Build:
+
+```
 npm run build
 go build ./main.go
 ```
