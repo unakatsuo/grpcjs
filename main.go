@@ -21,6 +21,10 @@ func (s *EchoService) Call(ctx context.Context, req *pb.Request) (*pb.Response, 
 //go:generate protoc --go_out=plugins=grpc:. ./pb/api.proto
 
 func OAuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 	log.Print(r.Form)
 	w.Header().Add("Location", "/static/index.html")
 	w.WriteHeader(http.StatusTemporaryRedirect)
